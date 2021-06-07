@@ -61,38 +61,45 @@ function App() {
           </div>
         </div>
       </div>
-      <div className="centerContainer">
-        <table className="smallScreenPadding servicesTable">
-          <thead>
-            <tr>
-              <th >Status</th>
-              <th className="spacerColumn"></th>
-              <th >Service</th>
-            </tr>
-          </thead>
-          <tbody>
-            {services.map(service =>
-              <tr key={service.serviceID}>
-                <td className="statusCell">{CreateStatusCircle(service.status)}</td>
-                <td></td>
-                <td>
-                  <div>{service.area}</div>
-                  <div>{service.route}</div>
-                </td>
+      <div className="centerContainer mainContent">
+        <div>
+          <table className="smallScreenPadding servicesTable">
+            <thead>
+              <tr>
+                <th >Status</th>
+                <th className="spacerColumn"></th>
+                <th >Service</th>
               </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
-      <div className="appLinksContainer centerContainer">
-        <img className="mainImage" alt="Screenshot of the iPhone app" src="images/screenshot.png" />
-        <h3>Get the App</h3>
-        <a href="https://apps.apple.com/nz/app/scottish-ferries/id861271891">
-          <img className="appLinkImage" alt="The Apple App Store logo" src="images/app-store.png" />
-        </a>
-        <a href="https://play.google.com/store/apps/details?id=com.stefanchurch.ferryservices">
-          <img className="appLinkImage" alt="The Google Pay Store logo" src="images/play-store.png" />
-        </a>
+            </thead>
+            <tbody>
+              {services.map(service =>
+                <tr key={service.serviceID}>
+                  <td className="statusCell">{CreateStatusCircle(service.status)}</td>
+                  <td></td>
+                  <td>
+                    <div>{service.area}</div>
+                    <div>{service.route}</div>
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+        <div className="appLinksContainer">
+          <img className="mainImage" alt="Screenshot of the iPhone app" src="images/screenshot.png" />
+          <h3 className="appBlurbHeader">Get the App</h3>
+          <p className="appBlurb">Get up-to-date push notifications with the app.</p>
+          <div>
+            <a href="https://apps.apple.com/nz/app/scottish-ferries/id861271891">
+              <img className="appLinkImage" alt="The Apple App Store logo" src="images/app-store.png" />
+            </a>
+          </div>
+          <div>
+            <a href="https://play.google.com/store/apps/details?id=com.stefanchurch.ferryservices">
+              <img className="appLinkImage" alt="The Google Pay Store logo" src="images/play-store.png" />
+            </a>
+          </div>
+        </div>
       </div>
       <div className="brandBackgroundContainer">
         <div className="supportContainer centerContainer">

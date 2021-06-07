@@ -21,6 +21,11 @@ a {
   padding: 0px 0px;
 }
 
+.mainContent {
+  display: flex;
+  flex-direction: row;
+}
+
 /* Header */
 .headerText {
   margin: 0px;
@@ -66,6 +71,15 @@ a {
   height: 40px;
 }
 
+.appBlurbHeader {
+  margin-bottom: 0px;
+}
+
+.appBlurb {
+  margin-top: 5px;
+  color: #707070;
+}
+
 /* Support */
 .supportContainer {
   padding: 4px 0px;
@@ -73,6 +87,11 @@ a {
 
 /* Responsive */
 @media screen and (max-width: 750px) {
+  .mainContent {
+    display: flex;
+    flex-direction: column;
+  }
+
   .centerContainer {
     width: 100%;
     margin: 0px;
