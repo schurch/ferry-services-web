@@ -14,7 +14,7 @@ a {
 
 .brandBackgroundContainer {
   color: white;
-  background-color: #50C8C8;
+  background-color: #21bfaa;
 }
 
 .smallScreenPadding {
@@ -99,5 +99,17 @@ a {
 
   .smallScreenPadding {
     padding: 0px 10px;
+  }
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  body {
+    color: #eee;
+    background: #121212;
+  }
+
+  .appBlurb {
+    color: #999999;
   }
 }
