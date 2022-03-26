@@ -109,6 +109,10 @@ a {
     background: #121212;
   }
 
+  .brandBackgroundContainer {
+    background-color: #303030;
+  }
+
   .appBlurb {
     color: #999999;
   }

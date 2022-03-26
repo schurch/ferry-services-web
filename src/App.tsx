@@ -88,7 +88,7 @@ function App() {
         <div className="appLinksContainer">
           <img className="mainImage" alt="Screenshot of the iPhone app" src="images/screenshot.png" />
           <h3 className="appBlurbHeader">Get the App</h3>
-          <p className="appBlurb">Get disruption push notifications with the app.</p>
+          <p className="appBlurb">Get notified about the latest disruptions with the app.</p>
           <div>
             <a href="https://apps.apple.com/nz/app/scottish-ferries/id861271891">
               <img className="appLinkImage" alt="The Apple App Store logo" src="images/app-store.png" />
