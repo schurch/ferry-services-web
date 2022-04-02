@@ -3,7 +3,6 @@ import './App.css'
 
 interface ServiceResponse {
   service_id: number
-  sort_order: number
   area: string
   route: string
   additional_info: string | null
@@ -29,7 +28,6 @@ enum Status {
 
 type Service = {
   serviceID: number,
-  sortOrder: number,
   area: string
   route: string
   status: Status
@@ -120,12 +118,11 @@ function convertToServices(serviceResponses: ServiceResponse[]): Service[] {
   return serviceResponses.map(serviceResponse => (
     {
       serviceID: serviceResponse.service_id,
-      sortOrder: serviceResponse.sort_order,
       area: serviceResponse.area,
       route: serviceResponse.route,
       status: serviceResponse.status
     }
-  )).sort((a, b) => a.sortOrder - b.sortOrder);
+  ))
 }
 
 function CreateStatusCircle(status: Status) {
@@ -156,7 +153,6 @@ const defaultServices: ServiceResponse[] = [
     "route": "Tobermory (TOB) - Kilchoan (KIC)",
     "service_id": 14,
     "updated": "2020-08-28T02:11:48.341768Z",
-    "sort_order": 1,
     "locations": [
       {
         "latitude": 56.68855,
@@ -179,7 +175,6 @@ const defaultServices: ServiceResponse[] = [
     "route": "Ardrossan (ARD) - Brodick (BRO)",
     "service_id": 5,
     "updated": "2020-08-28T02:11:48.341768Z",
-    "sort_order": 2,
     "locations": [
       {
         "latitude": 55.576606,
@@ -202,7 +197,6 @@ const defaultServices: ServiceResponse[] = [
     "route": "Claonaig (CLA)/Tarbert (TLF) - Lochranza (LRA)",
     "service_id": 6,
     "updated": "2020-08-28T02:11:48.341768Z",
-    "sort_order": 3,
     "locations": [
       {
         "latitude": 55.75106,
@@ -230,7 +224,6 @@ const defaultServices: ServiceResponse[] = [
     "route": "Ardmhor, Barra (AMH) - Eriskay (ERI)",
     "service_id": 21,
     "updated": "2020-08-28T02:11:48.341768Z",
-    "sort_order": 4,
     "locations": [
       {
         "latitude": 57.07091,
@@ -253,7 +246,6 @@ const defaultServices: ServiceResponse[] = [
     "route": "Largs (LAR) - Millport, Cumbrae Slip (CUM)",
     "service_id": 7,
     "updated": "2020-08-28T02:11:48.341768Z",
-    "sort_order": 11,
     "locations": [
       {
         "latitude": 55.78671,
@@ -276,7 +268,6 @@ const defaultServices: ServiceResponse[] = [
     "route": "Oban (OBA) - Castlebay (CAS)",
     "service_id": 20,
     "updated": "2020-08-28T02:11:48.341768Z",
-    "sort_order": 5,
     "locations": [
       {
         "latitude": 57.152201,
@@ -304,7 +295,6 @@ const defaultServices: ServiceResponse[] = [
     "route": "Colintraive (CTR) - Rhubodach (RHU)",
     "service_id": 4,
     "updated": "2020-08-28T02:11:48.341768Z",
-    "sort_order": 6,
     "locations": [
       {
         "latitude": 55.92067,
@@ -327,7 +317,6 @@ const defaultServices: ServiceResponse[] = [
     "route": "Wemyss Bay (WEM) - Rothesay (ROT)",
     "service_id": 3,
     "updated": "2020-08-28T02:11:48.341768Z",
-    "sort_order": 7,
     "locations": [
       {
         "latitude": 55.83848,
@@ -350,7 +339,6 @@ const defaultServices: ServiceResponse[] = [
     "route": "Oban (OBA) - Coll (CLL) - Tiree (TIR)",
     "service_id": 16,
     "updated": "2020-08-28T02:11:48.341768Z",
-    "sort_order": 8,
     "locations": [
       {
         "latitude": 56.508324,
@@ -378,7 +366,6 @@ const defaultServices: ServiceResponse[] = [
     "route": "Oban (OBA) - Colonsay (CSA) - Port Askaig (PAS) - Kennacraig (KEN)",
     "service_id": 10,
     "updated": "2020-08-28T02:11:48.341768Z",
-    "sort_order": 9,
     "locations": [
       {
         "latitude": 55.8067,
@@ -411,7 +398,6 @@ const defaultServices: ServiceResponse[] = [
     "route": "Gourock (GOU) - Dunoon (DUN)",
     "service_id": 1,
     "updated": "2020-08-28T02:11:48.341768Z",
-    "sort_order": 10,
     "locations": [
       {
         "latitude": 55.947006,
@@ -434,7 +420,6 @@ const defaultServices: ServiceResponse[] = [
     "route": "Tayinloan (TAY) - Gigha (GIG)",
     "service_id": 8,
     "updated": "2020-08-28T02:11:48.341768Z",
-    "sort_order": 12,
     "locations": [
       {
         "latitude": 55.678637,
@@ -457,7 +442,6 @@ const defaultServices: ServiceResponse[] = [
     "route": "Uig (UIG) - Tarbert (TAR)",
     "service_id": 24,
     "updated": "2020-08-28T02:11:48.341768Z",
-    "sort_order": 13,
     "locations": [
       {
         "latitude": 57.896848,
@@ -480,7 +464,6 @@ const defaultServices: ServiceResponse[] = [
     "route": "Fionnphort (FIO) - Iona (ION)",
     "service_id": 13,
     "updated": "2020-08-28T02:11:48.341768Z",
-    "sort_order": 14,
     "locations": [
       {
         "latitude": 56.330225,
@@ -503,7 +486,6 @@ const defaultServices: ServiceResponse[] = [
     "route": "Kennacraig (KEN) - Port Askaig (PAS), Kennacraig (KEN) - Port Ellen (PEL)",
     "service_id": 9,
     "updated": "2020-08-28T02:11:48.341768Z",
-    "sort_order": 15,
     "locations": [
       {
         "latitude": 55.62781,
@@ -531,7 +513,6 @@ const defaultServices: ServiceResponse[] = [
     "route": "Gallanach (GAL) - Kerrera (KER)",
     "service_id": 38,
     "updated": "2020-08-28T02:11:48.341768Z",
-    "sort_order": 16,
     "locations": [
       {
         "latitude": 56.399859,
@@ -554,7 +535,6 @@ const defaultServices: ServiceResponse[] = [
     "route": "Tarbert, Loch Fyne (TLF) - Portavadie (POR)",
     "service_id": 2,
     "updated": "2020-08-28T02:11:48.341768Z",
-    "sort_order": 17,
     "locations": [
       {
         "latitude": 55.87649,
@@ -577,7 +557,6 @@ const defaultServices: ServiceResponse[] = [
     "route": "Ullapool (ULL) - Stornoway (STO)",
     "service_id": 25,
     "updated": "2020-08-28T02:11:48.341768Z",
-    "sort_order": 18,
     "locations": [
       {
         "latitude": 57.894939,
@@ -600,7 +579,6 @@ const defaultServices: ServiceResponse[] = [
     "route": "Freight Ullapool -Stornoway ",
     "service_id": 35,
     "updated": "2020-08-28T02:11:48.341768Z",
-    "sort_order": 19,
     "locations": [
       {
         "latitude": 57.894939,
@@ -623,7 +601,6 @@ const defaultServices: ServiceResponse[] = [
     "route": "Oban (OBA) - Lismore (LIS)",
     "service_id": 15,
     "updated": "2020-08-28T02:11:48.341768Z",
-    "sort_order": 20,
     "locations": [
       {
         "latitude": 56.511159,
@@ -646,7 +623,6 @@ const defaultServices: ServiceResponse[] = [
     "route": "Oban (OBA) - Craignure (CRA)",
     "service_id": 11,
     "updated": "2020-08-28T02:11:48.341768Z",
-    "sort_order": 21,
     "locations": [
       {
         "latitude": 56.47074,
@@ -669,7 +645,6 @@ const defaultServices: ServiceResponse[] = [
     "route": "Lochaline (LAL) - Fishnish (FIS)",
     "service_id": 12,
     "updated": "2020-08-28T02:11:48.341768Z",
-    "sort_order": 22,
     "locations": [
       {
         "latitude": 56.51472,
@@ -692,7 +667,6 @@ const defaultServices: ServiceResponse[] = [
     "route": "Uig, Skye (UIG) - Lochmaddy (LMA)",
     "service_id": 22,
     "updated": "2020-08-28T02:11:48.341768Z",
-    "sort_order": 23,
     "locations": [
       {
         "latitude": 57.596518,
@@ -715,7 +689,6 @@ const defaultServices: ServiceResponse[] = [
     "route": "Berneray (BER) - Leverburgh (LEV)",
     "service_id": 23,
     "updated": "2020-08-28T02:11:48.341768Z",
-    "sort_order": 24,
     "locations": [
       {
         "latitude": 57.76654,
@@ -738,7 +711,6 @@ const defaultServices: ServiceResponse[] = [
     "route": "Sconser (SCO) - Raasay (RAA)",
     "service_id": 17,
     "updated": "2020-08-28T02:11:48.341768Z",
-    "sort_order": 25,
     "locations": [
       {
         "latitude": 57.351034,
@@ -761,7 +733,6 @@ const defaultServices: ServiceResponse[] = [
     "route": "Mallaig (MAL) - Armadale (ARM)",
     "service_id": 18,
     "updated": "2020-08-28T02:11:48.341768Z",
-    "sort_order": 26,
     "locations": [
       {
         "latitude": 57.064596,
@@ -784,7 +755,6 @@ const defaultServices: ServiceResponse[] = [
     "route": "Mallaig (MAL) - Small Isles (SIS)",
     "service_id": 19,
     "updated": "2020-08-28T02:11:48.341768Z",
-    "sort_order": 27,
     "locations": [
       {
         "latitude": 57.056171,
@@ -822,7 +792,6 @@ const defaultServices: ServiceResponse[] = [
     "route": "Mallaig (MAL) / Oban (OBA) - Lochboisdale (LBO)",
     "service_id": 37,
     "updated": "2020-08-28T02:11:48.341768Z",
-    "sort_order": 28,
     "locations": [
       {
         "latitude": 57.006834,
@@ -845,7 +814,6 @@ const defaultServices: ServiceResponse[] = [
     "route": "Gourock (GOU) - Kilcreggan (KIL)",
     "service_id": 39,
     "updated": "2020-08-28T02:11:48.341768Z",
-    "sort_order": 29,
     "locations": [
       {
         "latitude": 55.984704635223416,
