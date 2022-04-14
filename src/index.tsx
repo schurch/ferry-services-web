@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {
-  BrowserRouter,
+  HashRouter,
   Routes,
   Route,
 } from "react-router-dom";
@@ -11,14 +11,14 @@ import Services from "./Services";
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Services />} />
           <Route path="services/:serviceID" element={<ServiceDetails />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
