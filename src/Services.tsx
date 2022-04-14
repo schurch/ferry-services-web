@@ -47,7 +47,7 @@ export default function Services() {
                 <div>{service.route}</div>
               </Link>
             </td>
-            <td>
+            <td className="chevronContainer">
               <Link
                 to={`/services/${service.serviceID}`}
                 state={service}
