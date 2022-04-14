@@ -1,9 +1,15 @@
 import React from 'react';
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { Service } from "./Types"
 
 export default function ServiceDetails() {
-    let params = useParams();
+    const location = useLocation();
+    const service = location.state as Service
     return (
-        <p>SERVICE DETAIL {params.serviceID}</p>
+        <div>
+            <h1>{service.area}</h1>
+            <h2>{service.route}</h2>
+            <p dangerouslySetInnerHTML={{ __html: service.additional_info ?? "" }}></p>
+        </div>
     );
 }

@@ -4,7 +4,7 @@ body {
 }
 
 a {
-  color: white;
+  color: #21BFAA;
 }
 
 .centerContainer {
@@ -81,6 +81,10 @@ a {
   padding: 4px 0px;
 }
 
+.supportContainer a {
+  color: white;
+}
+
 /* Responsive */
 @media screen and (min-width: 750px) {
   .mainContent {
@@ -101,8 +105,12 @@ a {
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
   body {
-    color: #eee;
+    color: white;
     background: #121212;
+  }
+
+  .servicesTable a {
+    color: white;
   }
 
   .brandBackgroundContainer {

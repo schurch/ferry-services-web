@@ -1,40 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './Styles.css'
 import { Link } from "react-router-dom";
-import { defaultServices } from "./DefaultServices"
-
-interface ServiceResponse {
-  service_id: number
-  area: string
-  route: string
-  additional_info?: string | null
-  last_updated_date?: string | null
-  disruption_reason?: string | null
-  updated: string | null
-  status: number
-  locations: Location[]
-}
-
-interface Location {
-  id: number
-  name: string
-  latitude: number
-  longitude: number
-}
-
-enum Status {
-  Normal = 0,
-  Disrupted = 1,
-  Cancelled = 2,
-  Unknown = -99
-}
-
-type Service = {
-  serviceID: number,
-  area: string
-  route: string
-  status: Status
-}
+import { defaultServices } from "./DefaultServices";
+import { Service, ServiceResponse, Status } from "./Types";
 
 export default function Services() {
   const [services, setServices] = useState<Service[]>(convertToServices(defaultServices));
@@ -72,10 +40,23 @@ export default function Services() {
             <td>
               <Link
                 to={`/services/${service.serviceID}`}
+                state={service}
                 key={service.serviceID}
               >
                 <div>{service.area}</div>
                 <div>{service.route}</div>
+              </Link>
+            </td>
+            <td>
+              <Link
+                to={`/services/${service.serviceID}`}
+                state={service}
+                key={service.serviceID}
+              >
+                <picture>
+                  <source srcSet="/images/chevron-dark-mode.png" media="(prefers-color-scheme: dark)" />
+                  <img src="/images/chevron.png" width="7px" />
+                </picture>
               </Link>
             </td>
           </tr>
@@ -91,7 +72,8 @@ function convertToServices(serviceResponses: ServiceResponse[]): Service[] {
       serviceID: serviceResponse.service_id,
       area: serviceResponse.area,
       route: serviceResponse.route,
-      status: serviceResponse.status
+      status: serviceResponse.status,
+      additional_info: serviceResponse.additional_info
     }
   ))
 }
