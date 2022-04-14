@@ -10,8 +10,8 @@ export default function Services() {
   useEffect(() => {
     async function fetchServices() {
       try {
-        const response = await fetch("http://localhost:3001/api/services");
-        // const response = await fetch("https://scottishferryapp.com/api/services");
+        // const response = await fetch("http://localhost:3001/api/services");
+        const response = await fetch("https://scottishferryapp.com/api/services");
         const json: ServiceResponse[] = await response.json();
         const services: Service[] = convertToServices(json);
         setServices(services);
