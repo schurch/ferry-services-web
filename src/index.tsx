@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import {
   HashRouter,
   Routes,
@@ -9,7 +9,9 @@ import App from './App';
 import ServiceDetails from "./ServiceDetails";
 import Services from "./Services";
 
-ReactDOM.render(
+const container = document.getElementById('root');
+const root = createRoot(container!);
+root.render(
   <React.StrictMode>
     <HashRouter>
       <Routes>
@@ -19,6 +21,5 @@ ReactDOM.render(
         </Route>
       </Routes>
     </HashRouter>
-  </React.StrictMode>,
-  document.getElementById('root')
+  </React.StrictMode>
 );

@@ -4,14 +4,14 @@ import { Outlet } from "react-router-dom";
 
 function App() {
   return (
-    <div>
-      <div className="brandBackgroundContainer">
+    <React.Fragment>
+      <header className="brandBackgroundContainer">
         <div className="headerContainer centerContainer">
           <h1 className="headerText">Scottish Ferries</h1>
           <h2 className="subtitleText">The latest disruption information</h2>
         </div>
-      </div>
-      <div className="centerContainer mainContent">
+      </header>
+      <main className="centerContainer mainContent">
         <div>
           <Outlet />
         </div>
@@ -30,14 +30,14 @@ function App() {
             </a>
           </div>
         </div>
-      </div>
-      <div className="brandBackgroundContainer">
+      </main>
+      <footer className="brandBackgroundContainer">
         <div className="supportContainer centerContainer">
           <h2>Support</h2>
           <p>Please contact me at <a href="mailto:stefan.church@gmail.com">stefan.church@gmail.com</a> if you have any issues or questions.</p>
         </div>
-      </div>
-    </div >
+      </footer>
+    </React.Fragment >
   );
 }
 

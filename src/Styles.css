@@ -1,10 +1,29 @@
+:root {
+  --color-link: #21BFAA;
+
+  --color-background-brand-light: #21BFAA;
+  --color-background-brand-dark: #303030;
+  --color-text-brand-light: #FFFFFF;
+  --color-text-brand-dark: #FFFFFF;
+
+  --color-background-main-light: #FFFFFF;
+  --color-background-main-dark: #121212;
+  --color-text-main-light: #000000;
+  --color-text-main-dark: #FFFFFF;
+
+  --color-text-blurb-light: #707070;
+  --color-text-blurb-dark: #999999;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
+  color: var(--color-text-main-light);
+  background-color: var(--color-background-main-light);
   margin: 0px 0px 0px 0px;
 }
 
 a {
-  color: #21BFAA;
+  color: var(--color-link);
 }
 
 .centerContainer {
@@ -13,8 +32,8 @@ a {
 }
 
 .brandBackgroundContainer {
-  color: white;
-  background-color: #21bfaa;
+  color: var(--color-text-brand-light);
+  background-color: var(--color-background-brand-light);
 }
 
 /* Header */
@@ -37,8 +56,8 @@ a {
 }
 
 .servicesTable a {
-  color: black;
   text-decoration: none;
+  color: var(--color-text-main-light);
 }
 
 .servicesTable th {
@@ -46,7 +65,7 @@ a {
 }
 
 .spacerColumn {
-  width: 20px;
+  width: 10px;
 }
 
 .statusCell {
@@ -83,7 +102,7 @@ a {
 
 .appBlurb {
   margin: 5px 10px 20px 10px;
-  color: #707070;
+  color: var(--color-text-blurb-light);
 }
 
 /* Support */
@@ -92,7 +111,14 @@ a {
 }
 
 .supportContainer a {
-  color: white;
+  color: var(--color-text-brand-light);
+}
+
+/* Service Details */
+.statusDetails {
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 /* Responsive */
@@ -115,19 +141,24 @@ a {
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
   body {
-    color: white;
-    background: #121212;
-  }
-
-  .servicesTable a {
-    color: white;
+    color: var(--color-text-main-dark);
+    background-color: var(--color-background-main-dark);
   }
 
   .brandBackgroundContainer {
-    background-color: #303030;
+    color: var(--color-text-brand-dark);
+    background-color: var(--color-background-brand-dark);
+  }
+
+  .servicesTable a {
+    color: var(--color-text-main-dark);
   }
 
   .appBlurb {
-    color: #999999;
+    color: var(--color-text-blurb-dark);
+  }
+
+  .supportContainer a {
+    color: var(--color-text-brand-dark);
   }
 }
