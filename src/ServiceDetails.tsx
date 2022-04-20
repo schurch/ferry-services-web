@@ -8,7 +8,7 @@ export default function ServiceDetails() {
   const location = useLocation();
   const service = location.state as Service
   return (
-    <React.Fragment>
+    <>
       <ScrollToTopOnMount />
       <h1>{service.area}</h1>
       <h2>{service.route}</h2>
@@ -17,7 +17,7 @@ export default function ServiceDetails() {
         <span>{statusText(service.status)}</span>
       </div> */}
       <div dangerouslySetInnerHTML={{ __html: service.additional_info ?? "" }}></div>
-    </React.Fragment>
+    </>
   );
 }
 

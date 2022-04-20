@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 
 function App() {
   return (
-    <React.Fragment>
+    <>
       <header className="brandBackgroundContainer">
         <div className="headerContainer centerContainer">
           <h1 className="headerText">Scottish Ferries</h1>
@@ -37,7 +37,7 @@ function App() {
           <p>Please contact me at <a href="mailto:stefan.church@gmail.com">stefan.church@gmail.com</a> if you have any issues or questions.</p>
         </div>
       </footer>
-    </React.Fragment >
+    </>
   );
 }
 
