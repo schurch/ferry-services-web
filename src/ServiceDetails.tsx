@@ -16,7 +16,7 @@ export default function ServiceDetails() {
         <StatusCircle status={service.status} />
         <span>{statusText(service.status)}</span>
       </div> */}
-      <p dangerouslySetInnerHTML={{ __html: service.additional_info ?? "" }}></p>
+      <div dangerouslySetInnerHTML={{ __html: service.additional_info ?? "" }}></div>
     </React.Fragment>
   );
 }

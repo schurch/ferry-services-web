@@ -29,7 +29,7 @@ export default function Services() {
       <thead>
         <tr>
           <th >Status</th>
-          <th className="spacerColumn"></th>
+          <td className="spacerColumn" aria-hidden="true"></td>
           <th >Service</th>
         </tr>
       </thead>
@@ -39,7 +39,7 @@ export default function Services() {
             <td className="statusCell">
               <StatusCircle status={service.status} />
             </td>
-            <td></td>
+            <td aria-hidden="true"></td>
             <td>
               <Link
                 to={`/services/${service.serviceID}`}
@@ -50,7 +50,7 @@ export default function Services() {
                 <div>{service.route}</div>
               </Link>
             </td>
-            <td className="chevronContainer">
+            <td className="chevronContainer" aria-hidden="true">
               <Link
                 to={`/services/${service.serviceID}`}
                 state={service}
@@ -58,7 +58,7 @@ export default function Services() {
               >
                 <picture>
                   <source srcSet="/images/chevron-dark-mode.png" media="(prefers-color-scheme: dark)" />
-                  <img src="/images/chevron.png" width="7px" />
+                  <img src="/images/chevron.png" width="7px" height="13px" alt="" />
                 </picture>
               </Link>
             </td>
