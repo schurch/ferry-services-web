@@ -1,21 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from "react-router-dom";
-import { Service, Status } from "./Types"
+import { Service, ServiceResponse, Status, serviceResponseToService } from "./Types"
 import ScrollToTopOnMount from "./ScrollToTopOnMount"
 import StatusCircle from './StatusCircle';
+import { BASE_URL } from './Constants';
 
 export default function ServiceDetails() {
   const location = useLocation();
-  const service = location.state as Service
+  const [service, setService] = useState<Service>(location.state as Service);
+
+  useEffect(() => {
+    async function fetchService() {
+      try {
+        const response = await fetch(BASE_URL + "/services/" + service.serviceID);
+        const json: ServiceResponse = await response.json();
+        setService(serviceResponseToService(json));
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+    fetchService();
+  }, []);
+
   return (
     <>
       <ScrollToTopOnMount />
       <h1>{service.area}</h1>
       <h2>{service.route}</h2>
-      {/* <div className="statusDetails">
+      <div className="statusDetails">
         <StatusCircle status={service.status} />
         <span>{statusText(service.status)}</span>
-      </div> */}
+      </div>
       <div dangerouslySetInnerHTML={{ __html: service.additional_info ?? "" }}></div>
     </>
   );

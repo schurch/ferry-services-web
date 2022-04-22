@@ -2,20 +2,19 @@ import React, { useEffect, useState } from 'react';
 import './Styles.css'
 import { Link } from "react-router-dom";
 import { defaultServices } from "./DefaultServices";
-import { Service, ServiceResponse } from "./Types";
+import { Service, ServiceResponse, serviceResponseToService } from "./Types";
 import StatusCircle from './StatusCircle';
+import { BASE_URL } from './Constants';
 
 export default function Services() {
-  const [services, setServices] = useState<Service[]>(convertToServices(defaultServices));
+  const [services, setServices] = useState<Service[]>(defaultServices.map(serviceResponseToService));
 
   useEffect(() => {
     async function fetchServices() {
       try {
-        // const response = await fetch("http://localhost:3001/api/services");
-        const response = await fetch("https://scottishferryapp.com/api/services");
+        const response = await fetch(BASE_URL + "/services");
         const json: ServiceResponse[] = await response.json();
-        const services: Service[] = convertToServices(json);
-        setServices(services);
+        setServices(json.map(serviceResponseToService));
       } catch (e) {
         console.log(e);
       }
@@ -67,16 +66,4 @@ export default function Services() {
       </tbody>
     </table>
   );
-}
-
-function convertToServices(serviceResponses: ServiceResponse[]): Service[] {
-  return serviceResponses.map(serviceResponse => (
-    {
-      serviceID: serviceResponse.service_id,
-      area: serviceResponse.area,
-      route: serviceResponse.route,
-      status: serviceResponse.status,
-      additional_info: serviceResponse.additional_info
-    }
-  ))
 }

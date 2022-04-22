@@ -31,3 +31,13 @@ export type Service = {
     status: Status
     additional_info?: string | null
 }
+
+export function serviceResponseToService(response: ServiceResponse): Service {
+    return {
+        serviceID: response.service_id,
+        area: response.area,
+        route: response.route,
+        status: response.status,
+        additional_info: response.additional_info
+    }
+}
