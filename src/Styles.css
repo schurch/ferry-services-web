@@ -131,8 +131,13 @@ a {
   }
 
   .centerContainer {
-    margin: 10px auto;
+    margin: 0px auto;
   }
+
+  .servicesTable {
+    margin-bottom: 10px;
+  }
+
 }
 
 /* Dark mode */
