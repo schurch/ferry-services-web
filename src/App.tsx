@@ -26,7 +26,7 @@ function App() {
           </div>
           <div>
             <a href="https://play.google.com/store/apps/details?id=com.stefanchurch.ferryservices">
-              <img className="appLinkImage" alt="The Google Pay Store logo" src="/images/play-store.png" width="134px" height="40px" />
+              <img className="appLinkImage" alt="The Google Pay Store logo" src="/images/play-store.png" width="136px" height="41px" />
             </a>
           </div>
         </div>
