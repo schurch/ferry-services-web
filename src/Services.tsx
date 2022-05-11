@@ -54,6 +54,7 @@ export default function Services() {
                 to={`/services/${service.serviceID}`}
                 state={service}
                 key={service.serviceID}
+                tabIndex={-1}
               >
                 <picture>
                   <source srcSet="/images/chevron-dark-mode.png" media="(prefers-color-scheme: dark)" />
