@@ -16,7 +16,11 @@ function App() {
           <Outlet />
         </div>
         <div className="appLinksContainer">
-          <img className="mainImage" alt="Screenshot of the Android and iPhone apps" src="/images/screenshot.png" width="200px" height="279px" />
+          <picture>
+            <source srcSet="/images/screenshot-dark.png" media="(prefers-color-scheme: dark)" />
+            <img className="mainImage" alt="Screenshot of the Android and iPhone apps" src="/images/screenshot.png" width="200px" height="279px" />
+          </picture>
+
           <h3 className="appBlurbHeader">Get the App</h3>
           <p className="appBlurb">Get notified about the latest disruptions with the app.</p>
           <div>
