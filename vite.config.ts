@@ -30,5 +30,9 @@ export default defineConfig({
         manualChunks: undefined
       }
     }
+  },
+  test: {
+    environment: "jsdom",
+    setupFiles: "./src/test/setup.ts"
   }
 });
