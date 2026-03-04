@@ -183,18 +183,79 @@ const styles = `
   --card: #ffffff;
   --text: #10243e;
   --muted: #425466;
+  --bg: #f6f9fc;
+  --row-bg-start: #ffffff;
+  --row-bg-end: #fbfdff;
+  --panel-bg-start: #ffffff;
+  --panel-bg-end: #f9fcff;
+  --button-bg-start: #ffffff;
+  --button-bg-end: #f6f9ff;
+  --button-hover-bg: #edf3ff;
+  --chip-bg: rgba(255, 255, 255, 0.65);
+  --search-bg: rgba(255, 255, 255, 0.85);
+  --shadow-soft: 0 10px 24px rgba(15, 34, 58, 0.08);
+  --shadow-strong: 0 14px 30px rgba(15, 34, 58, 0.13);
+  --shadow-panel: 0 10px 28px rgba(15, 34, 58, 0.09);
+  --shadow-map: 0 10px 28px rgba(15, 34, 58, 0.14);
+  --divider: rgba(16, 36, 62, 0.12);
+  --modal-overlay: rgba(10, 27, 44, 0.45);
+  --modal-bg: #ffffff;
+  --modal-shadow: 0 20px 60px rgba(10, 27, 44, 0.35);
+  --modal-border: rgba(16, 36, 62, 0.12);
+  --map-placeholder-start: #f2f7ff;
+  --map-placeholder-end: #ffffff;
   --green: #11865a;
   --amber: #ba7608;
   --red: #b53333;
   --gray: #67788d;
   --radius: 14px;
 }
+
+:root[data-theme="dark"] {
+  --brand: #3cd7c2;
+  --ink: #eff6ff;
+  --ink-soft: #9bb1c8;
+  --surface: #182634;
+  --surface-soft: #0b1725;
+  --border: #2a3c51;
+  --line: #2a3c51;
+  --link: #59d9c7;
+  --focus: #59d9c7;
+  --card: #182634;
+  --text: #eff6ff;
+  --muted: #9bb1c8;
+  --bg: #081423;
+  --row-bg-start: #162638;
+  --row-bg-end: #1b2f44;
+  --panel-bg-start: #162638;
+  --panel-bg-end: #1a2d40;
+  --button-bg-start: #1d3348;
+  --button-bg-end: #182c40;
+  --button-hover-bg: #243d55;
+  --chip-bg: rgba(21, 37, 55, 0.9);
+  --search-bg: rgba(14, 27, 41, 0.9);
+  --shadow-soft: 0 10px 24px rgba(0, 0, 0, 0.34);
+  --shadow-strong: 0 14px 30px rgba(0, 0, 0, 0.45);
+  --shadow-panel: 0 10px 28px rgba(0, 0, 0, 0.35);
+  --shadow-map: 0 10px 28px rgba(0, 0, 0, 0.45);
+  --divider: rgba(155, 177, 200, 0.3);
+  --modal-overlay: rgba(5, 10, 15, 0.72);
+  --modal-bg: #142234;
+  --modal-shadow: 0 20px 60px rgba(0, 0, 0, 0.56);
+  --modal-border: rgba(155, 177, 200, 0.28);
+  --map-placeholder-start: #0e1d2f;
+  --map-placeholder-end: #162638;
+  --green: #59d996;
+  --amber: #e7b052;
+  --red: #ef7f7f;
+  --gray: #afbfce;
+}
 * { box-sizing: border-box; }
 body {
   margin: 0;
   font-family: "Manrope", "Avenir Next", "Segoe UI", sans-serif;
   color: var(--text);
-  background: #f6f9fc;
+  background: var(--bg);
   min-height: 100vh;
 }
 a { color: var(--link); text-decoration-thickness: 1px; text-underline-offset: 2px; }
@@ -245,7 +306,7 @@ main {
   justify-content: center;
   align-items: center;
   min-height: 36px;
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--chip-bg);
   border: none;
   border-radius: 999px;
   padding: 7px 10px;
@@ -260,7 +321,7 @@ input, button { font: inherit; }
   padding: 12px 14px 12px 38px;
   border: none;
   border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--search-bg);
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%2360778f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="16.65" y1="16.65" x2="21" y2="21"/></svg>');
   background-repeat: no-repeat;
   background-position: 12px center;
@@ -271,7 +332,7 @@ input, button { font: inherit; }
 .search:focus { outline: 2px solid var(--focus); outline-offset: 1px; }
 .button {
   border: none;
-  background: linear-gradient(180deg, #ffffff 0%, #f6f9ff 100%);
+  background: linear-gradient(180deg, var(--button-bg-start) 0%, var(--button-bg-end) 100%);
   color: var(--text);
   padding: 10px 13px;
   border-radius: var(--radius);
@@ -280,7 +341,7 @@ input, button { font: inherit; }
   font-weight: 600;
   box-shadow: 0 2px 8px rgba(16, 36, 62, 0.08);
 }
-.button:hover { background: #edf3ff; border-color: #d1ddf0; }
+.button:hover { background: var(--button-hover-bg); border-color: var(--border); }
 .group { margin-bottom: 30px; }
 .group h2 {
   font-size: 0.78rem;
@@ -292,7 +353,7 @@ input, button { font: inherit; }
 }
 .row-link { text-decoration: none; color: inherit; }
 .row {
-  background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+  background: linear-gradient(180deg, var(--row-bg-start) 0%, var(--row-bg-end) 100%);
   border: none;
   border-radius: var(--radius);
   padding: 13px 14px;
@@ -300,10 +361,10 @@ input, button { font: inherit; }
   gap: 12px;
   margin-bottom: 10px;
   align-items: flex-start;
-  box-shadow: 0 10px 24px rgba(15, 34, 58, 0.08);
+  box-shadow: var(--shadow-soft);
   transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease;
 }
-.row:hover { transform: translateY(-1px); box-shadow: 0 14px 30px rgba(15, 34, 58, 0.13); }
+.row:hover { transform: translateY(-1px); box-shadow: var(--shadow-strong); }
 .row-main { min-width: 0; flex: 1; }
 .row-main strong { display: block; font-size: 1rem; letter-spacing: -0.01em; font-weight: 700; }
 .row-main .route { color: var(--muted); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -332,16 +393,16 @@ input, button { font: inherit; }
   border: none;
   border-radius: 999px;
   padding: 7px 12px;
-  background: #fff;
+  background: var(--surface);
   box-shadow: inset 0 -1px 0 rgba(16, 36, 62, 0.04);
 }
 .panel {
-  background: linear-gradient(180deg, #ffffff 0%, #f9fcff 100%);
+  background: linear-gradient(180deg, var(--panel-bg-start) 0%, var(--panel-bg-end) 100%);
   border: none;
   border-radius: 16px;
   padding: 16px;
   margin-bottom: 16px;
-  box-shadow: 0 10px 28px rgba(15, 34, 58, 0.09);
+  box-shadow: var(--shadow-panel);
 }
 .muted { color: var(--muted); }
 .small { font-size: 0.9rem; }
@@ -363,7 +424,7 @@ input, button { font: inherit; }
 }
 .panel-divider {
   height: 1px;
-  background: rgba(16, 36, 62, 0.12);
+  background: var(--divider);
   margin: 14px -16px 0;
 }
 .service-summary {
@@ -373,7 +434,7 @@ input, button { font: inherit; }
   border-radius: 18px;
   overflow: hidden;
   margin-bottom: 16px;
-  box-shadow: 0 10px 28px rgba(15, 34, 58, 0.14);
+  box-shadow: var(--shadow-map);
 }
 .panel-map-bleed {
   margin: 12px -16px 0;
@@ -399,7 +460,7 @@ input, button { font: inherit; }
   display: grid;
   place-items: center;
   padding: 20px;
-  background: linear-gradient(180deg, #f2f7ff 0%, #ffffff 100%);
+  background: linear-gradient(180deg, var(--map-placeholder-start) 0%, var(--map-placeholder-end) 100%);
   color: var(--muted);
   text-align: center;
   line-height: 1.45;
@@ -498,7 +559,7 @@ input, button { font: inherit; }
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(10, 27, 44, 0.45);
+  background: var(--modal-overlay);
   display: grid;
   place-items: center;
   padding: 20px;
@@ -508,15 +569,15 @@ input, button { font: inherit; }
   width: min(780px, 100%);
   max-height: min(82vh, 900px);
   overflow: auto;
-  background: #ffffff;
+  background: var(--modal-bg);
   border-radius: 14px;
-  box-shadow: 0 20px 60px rgba(10, 27, 44, 0.35);
+  box-shadow: var(--modal-shadow);
 }
 .modal-head {
   position: sticky;
   top: 0;
-  background: #ffffff;
-  border-bottom: 1px solid rgba(16, 36, 62, 0.12);
+  background: var(--modal-bg);
+  border-bottom: 1px solid var(--modal-border);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -530,6 +591,7 @@ input, button { font: inherit; }
 .modal-close {
   border: 0;
   background: transparent;
+  color: var(--text);
   font-size: 1.2rem;
   cursor: pointer;
   line-height: 1;
@@ -1318,6 +1380,23 @@ function AdditionalInfoPage(): React.JSX.Element {
 }
 
 function App(): React.JSX.Element {
+  const [systemPrefersDark, setSystemPrefersDark] = useState<boolean>(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  });
+
+  useEffect(() => {
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
+    const onChange = (event: MediaQueryListEvent) => setSystemPrefersDark(event.matches);
+    media.addEventListener("change", onChange);
+    return () => media.removeEventListener("change", onChange);
+  }, []);
+
+  useEffect(() => {
+    const resolvedTheme = systemPrefersDark ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", resolvedTheme);
+  }, [systemPrefersDark]);
+
   return (
     <HashRouter>
       <style>{styles}</style>
