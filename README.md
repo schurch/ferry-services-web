@@ -1,36 +1,64 @@
+# Ferry Services Web
+
+React + TypeScript web app for viewing Scottish ferry service status, disruption details, schedules, and vessel/location maps.
+
+## Tech Stack
+
+- React 18
+- TypeScript
+- Vite 5
+- React Router (hash routing)
+
+## Prerequisites
+
+- Node.js 18+ (Node.js 20 recommended)
+- npm
+
+## Getting Started
+
+```bash
+npm install
+npm run dev
+```
+
+Vite will start a local dev server (typically `http://localhost:5173`).
+
 ## Available Scripts
 
-In the project directory, you can run:
+- `npm run dev`: start the local development server
+- `npm run build`: create a production build in `dist/`
+- `npm run preview`: preview the production build locally
 
-### `yarn start`
+## API Configuration
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The app requests backend data under `/api`, and Vite proxies this to:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- `https://scottishferryapp.com`
 
-### `yarn test`
+This proxy is configured for both `dev` and `preview` in [`vite.config.ts`](/Users/stefanchurch/Documents/Source/ferry-services-web/vite.config.ts).
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Google Maps (Optional)
 
-### `yarn build`
+Service detail pages can render vessel/location markers with Google Maps.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Set an environment variable before running:
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+```bash
+VITE_GOOGLE_MAPS_API_KEY=your_key_here
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+For local development, create `.env.local` in the project root:
 
-### `yarn eject`
+```dotenv
+VITE_GOOGLE_MAPS_API_KEY=your_key_here
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Without this key, the app still works and shows a fallback message instead of the map.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Routing
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+The app uses `HashRouter`, so routes are hash-based (for example `#/service/123`), which helps with static hosting.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Build Output
+
+Production files are generated into `dist/` and can be hosted on any static file server.
