@@ -28,6 +28,28 @@ Vite will start a local dev server (typically `http://localhost:5173`).
 - `npm run dev`: start the local development server
 - `npm run build`: create a production build in `dist/`
 - `npm run preview`: preview the production build locally
+- `npm test`: run tests once with Vitest
+- `npm run test:watch`: run tests in watch mode
+
+## Project Structure
+
+```text
+src/
+  api/           # API requests + payload mapping
+  components/    # shared UI components
+  maps/          # map point transformation logic
+  pages/         # route-level pages
+  utils/         # date/status helpers
+  App.tsx        # router + app shell behavior
+  main.tsx       # entrypoint/bootstrap
+  styles.css     # global styles and theme tokens
+  types.ts       # shared app/API types
+```
+
+## Theming
+
+- The app follows the user's OS/browser theme automatically.
+- Theme is applied at runtime via `data-theme` on `:root` and CSS variables in [`src/styles.css`](/Users/stefanchurch/Documents/Source/ferry-services-web/src/styles.css).
 
 ## API Configuration
 
@@ -58,6 +80,20 @@ Without this key, the app still works and shows a fallback message instead of th
 ## Routing
 
 The app uses `HashRouter`, so routes are hash-based (for example `#/service/123`), which helps with static hosting.
+
+## Testing
+
+- Test runner: Vitest
+- Component tests: React Testing Library + jsdom
+- Setup file: [`src/test/setup.ts`](/Users/stefanchurch/Documents/Source/ferry-services-web/src/test/setup.ts)
+
+Current test coverage includes:
+
+- Date/time formatting helpers
+- Service status text helpers
+- Map point extraction logic
+- API fetch/mapping behavior
+- `ServiceDetailsPage` rendering and modal interactions
 
 ## Build Output
 
