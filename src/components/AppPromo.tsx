@@ -1,13 +1,17 @@
 import type React from "react";
+import appStoreBadge from "../assets/app-store.png";
+import playStoreBadge from "../assets/play-store.png";
+import screenshotDark from "../assets/screenshot-dark.png";
+import screenshotLight from "../assets/screenshot.png";
 
 export function AppPromo(): React.JSX.Element {
   return (
     <section className="app-promo">
       <picture>
-        <source media="(prefers-color-scheme: dark)" srcSet="https://scottishferryapp.com/images/screenshot-dark.png" />
+        <source media="(prefers-color-scheme: dark)" srcSet={screenshotDark} />
         <img
           className="app-promo-shot"
-          src="https://scottishferryapp.com/images/screenshot.png"
+          src={screenshotLight}
           alt="Scottish Ferries app screenshot"
           loading="lazy"
         />
@@ -22,7 +26,7 @@ export function AppPromo(): React.JSX.Element {
             rel="noreferrer"
             aria-label="Download on the App Store"
           >
-            <img src="https://scottishferryapp.com/images/app-store.png" alt="Download on the App Store" />
+            <img src={appStoreBadge} alt="Download on the App Store" />
           </a>
           <a
             href="https://play.google.com/store/apps/details?id=com.stefanchurch.ferryservices"
@@ -30,7 +34,7 @@ export function AppPromo(): React.JSX.Element {
             rel="noreferrer"
             aria-label="Get it on Google Play"
           >
-            <img src="https://scottishferryapp.com/images/play-store.png" alt="Get it on Google Play" />
+            <img src={playStoreBadge} alt="Get it on Google Play" />
           </a>
         </div>
       </div>
