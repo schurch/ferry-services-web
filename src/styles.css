@@ -466,6 +466,108 @@ button {
   line-height: 1.45;
 }
 
+.gm-style .gm-style-iw-c {
+  background: #ffffff;
+  color: #10243e;
+  border-radius: 12px;
+  padding-top: 10px;
+  padding-right: 10px;
+}
+
+.gm-style .gm-style-iw-d {
+  color: inherit;
+}
+
+.gm-style .gm-style-iw-t::after {
+  background: #ffffff;
+}
+
+.gm-style .gm-style-iw-t,
+.gm-style .gm-style-iw-tc {
+  filter: none !important;
+  box-shadow: none !important;
+}
+
+.gm-style .gm-style-iw-tc::after {
+  background: #ffffff;
+  box-shadow: none !important;
+}
+
+.gm-style .gm-style-iw-tc::before {
+  display: none !important;
+  box-shadow: none !important;
+}
+
+.map-popup {
+  font-family: Manrope, Avenir Next, Segoe UI, sans-serif;
+  font-size: 0.88rem;
+  line-height: 1.35;
+  color: inherit;
+  padding-right: 20px;
+}
+
+.map-popup-title {
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.map-popup-meta {
+  margin-top: 4px;
+  font-size: 0.82rem;
+  opacity: 0.88;
+}
+
+.map-popup-dot {
+  display: inline-block;
+  margin: 0 4px;
+}
+
+.gm-style .gm-ui-hover-effect {
+  top: 2px !important;
+  right: 2px !important;
+  width: 26px !important;
+  height: 26px !important;
+  border-radius: 999px;
+  background: rgba(16, 36, 62, 0.08);
+}
+
+.gm-style .gm-ui-hover-effect > span {
+  margin: 1px !important;
+}
+
+:root[data-theme="dark"] .gm-style .gm-style-iw-c {
+  background: #162638;
+  color: #eff6ff;
+}
+
+:root[data-theme="dark"] .gm-style .gm-style-iw-d {
+  color: #eff6ff;
+}
+
+:root[data-theme="dark"] .gm-style .gm-style-iw-t::after {
+  background: #162638;
+}
+
+:root[data-theme="dark"] .gm-style .gm-style-iw-t,
+:root[data-theme="dark"] .gm-style .gm-style-iw-tc {
+  filter: none !important;
+  box-shadow: none !important;
+}
+
+:root[data-theme="dark"] .gm-style .gm-style-iw-tc::after {
+  background: #162638;
+  box-shadow: none !important;
+}
+
+:root[data-theme="dark"] .gm-style .gm-ui-hover-effect {
+  background: rgba(239, 246, 255, 0.18);
+}
+
+:root[data-theme="dark"] .gm-style .gm-ui-hover-effect > span {
+  filter: invert(1);
+}
+
 .site-footer {
   margin-top: 28px;
   background: transparent;

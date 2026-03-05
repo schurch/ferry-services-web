@@ -6,6 +6,7 @@ export type GoogleMapPoint = {
   label: string;
   type: "location" | "vessel";
   speed?: number | null;
+  course?: number | null;
   lastReceived?: string | null;
 };
 
@@ -27,6 +28,7 @@ export function getGoogleMapPoints(service: Service): GoogleMapPoint[] {
       label: vessel.name || "Vessel",
       type: "vessel" as const,
       speed: vessel.speed,
+      course: vessel.course,
       lastReceived: vessel.lastReceived
     }));
 

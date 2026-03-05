@@ -61,6 +61,6 @@ describe("getGoogleMapPoints", () => {
 
     expect(points).toHaveLength(2);
     expect(points[0]).toMatchObject({ label: "Port A", type: "location" });
-    expect(points[1]).toMatchObject({ label: "Vessel 1", type: "vessel", speed: 10 });
+    expect(points[1]).toMatchObject({ label: "Vessel 1", type: "vessel", speed: 10, course: 90 });
   });
 });
