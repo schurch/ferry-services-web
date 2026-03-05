@@ -3,12 +3,15 @@ import type React from "react";
 export function AppPromo(): React.JSX.Element {
   return (
     <section className="app-promo">
-      <img
-        className="app-promo-shot"
-        src="https://scottishferryapp.com/images/screenshot.png"
-        alt="Scottish Ferries app screenshot"
-        loading="lazy"
-      />
+      <picture>
+        <source media="(prefers-color-scheme: dark)" srcSet="https://scottishferryapp.com/images/screenshot-dark.png" />
+        <img
+          className="app-promo-shot"
+          src="https://scottishferryapp.com/images/screenshot.png"
+          alt="Scottish Ferries app screenshot"
+          loading="lazy"
+        />
+      </picture>
       <div className="app-promo-content">
         <h2>Get the App</h2>
         <p>Get notified about the latest disruptions with the app.</p>
