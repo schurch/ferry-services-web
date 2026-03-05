@@ -77,6 +77,18 @@ VITE_GOOGLE_MAPS_API_KEY=your_key_here
 
 Without this key, the app still works and shows a fallback message instead of the map.
 
+For deployed static builds, you can also set the key at runtime before the app script loads:
+
+```html
+<script>
+  window.__FERRY_CONFIG__ = {
+    googleMapsApiKey: "your_key_here"
+  };
+</script>
+```
+
+Build-time `VITE_GOOGLE_MAPS_API_KEY` still works and takes precedence if both are set.
+
 ## Routing
 
 The app uses `HashRouter`, so routes are hash-based (for example `#/service/123`), which helps with static hosting.

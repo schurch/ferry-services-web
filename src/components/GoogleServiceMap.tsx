@@ -125,8 +125,9 @@ export function GoogleServiceMap({
     return (
       <div className="map-shell">
         <div className="map-missing-key">
-          Google Maps requires an API key. Set <code>VITE_GOOGLE_MAPS_API_KEY</code> and reload to render
-          location and vessel markers for {serviceArea}.
+          Google Maps requires an API key. Set <code>VITE_GOOGLE_MAPS_API_KEY</code> at build time or{" "}
+          <code>window.__FERRY_CONFIG__.googleMapsApiKey</code> at runtime, then reload to render location and
+          vessel markers for {serviceArea}.
         </div>
       </div>
     );
