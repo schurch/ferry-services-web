@@ -36,7 +36,7 @@ export function ScheduledDeparturesPanel({ service }: { service: Service }): Rea
           return Array.from(groupedByDestination.entries()).map(([destinationId, departures]) => {
             const destinationName = departures[0]?.destination.name ?? "Destination";
             return (
-              <article className="location" key={`${currentLocation.id}-${destinationId}`}>
+              <article className="departures-route" key={`${currentLocation.id}-${destinationId}`}>
                 <h3>
                   {currentLocation.name} to {destinationName}
                 </h3>

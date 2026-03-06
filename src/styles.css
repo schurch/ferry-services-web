@@ -393,6 +393,15 @@ button {
   font-size: 1rem;
 }
 
+.departures-route {
+  padding: 4px 0;
+}
+
+.departures-route h3 {
+  margin: 0 0 8px 0;
+  font-size: 1rem;
+}
+
 .departure-row {
   display: flex;
   justify-content: space-between;
