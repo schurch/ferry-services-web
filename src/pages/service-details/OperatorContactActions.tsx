@@ -2,8 +2,13 @@ import type React from "react";
 import type { ServiceOperator } from "../../types";
 import calmacLogo from "../../assets/calmac-logo.png";
 
+function hasCalmacBrand(name: string): boolean {
+  const normalized = name.trim().toLowerCase();
+  return normalized.includes("calmac") || normalized.includes("caledonian macbrayne");
+}
+
 export function OperatorContactActions({ operator }: { operator: ServiceOperator }): React.JSX.Element {
-  const showCalmacLogo = operator.name.trim().toLowerCase() === "calmac";
+  const showCalmacLogo = hasCalmacBrand(operator.name);
 
   return (
     <>

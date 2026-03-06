@@ -6,8 +6,14 @@ import { SERVICES_CACHE } from "../constants";
 import { AppPromo } from "../components/AppPromo";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeading } from "../components/SiteHeading";
+import calmacLogo from "../assets/calmac-logo.png";
 import type { Service } from "../types";
 import { statusLabel } from "../utils/status";
+
+function hasCalmacBrand(name: string): boolean {
+  const normalized = name.trim().toLowerCase();
+  return normalized.includes("calmac") || normalized.includes("caledonian macbrayne");
+}
 
 export function ServicesPage(): React.JSX.Element {
   const [services, setServices] = useState<Service[]>([]);
@@ -92,7 +98,12 @@ export function ServicesPage(): React.JSX.Element {
 
           {grouped.map(([groupName, groupServices]) => (
             <section className="group" key={groupName}>
-              <h2>{groupName}</h2>
+              <h2 className="group-heading">
+                {hasCalmacBrand(groupName) && (
+                  <img className="group-logo" src={calmacLogo} alt="" aria-hidden="true" />
+                )}
+                <span>{groupName}</span>
+              </h2>
               {groupServices.map((service) => (
                 <Link
                   key={service.serviceId}

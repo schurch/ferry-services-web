@@ -243,6 +243,18 @@ button {
   font-weight: 800;
 }
 
+.group-heading {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.group-logo {
+  width: auto;
+  height: 24px;
+  display: block;
+}
+
 .row-link {
   text-decoration: none;
   color: inherit;
@@ -441,7 +453,7 @@ button {
 
 .operator-logo {
   width: auto;
-  height: 28px;
+  height: 30px;
   display: block;
 }
 
