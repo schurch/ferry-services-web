@@ -8,7 +8,6 @@ import { SiteHeading } from "../components/SiteHeading";
 import type { Service } from "../types";
 import { toDateInput } from "../utils/date";
 import { DisruptionDetailsModal } from "./service-details/DisruptionDetailsModal";
-import { ScheduledDeparturesPanel } from "./service-details/ScheduledDeparturesPanel";
 import { ServiceSummaryPanel } from "./service-details/ServiceSummaryPanel";
 
 export function ServiceDetailsPage(): React.JSX.Element {
@@ -46,6 +45,10 @@ export function ServiceDetailsPage(): React.JSX.Element {
     void loadDetails();
   }, [loadDetails]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  }, [serviceId, location.key]);
+
   if (Number.isNaN(serviceId)) {
     return <Navigate to="/" replace />;
   }
@@ -80,7 +83,6 @@ export function ServiceDetailsPage(): React.JSX.Element {
                 hasAdditionalInfo={hasAdditionalInfo}
                 onOpenDisruptionDetails={() => setShowDisruptionModal(true)}
               />
-              <ScheduledDeparturesPanel service={service} />
             </>
           )}
         </div>

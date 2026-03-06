@@ -7,11 +7,19 @@ export function ScheduledDeparturesPanel({ service }: { service: Service }): Rea
     return null;
   }
 
+  const locationsWithDepartures = service.locations.filter(
+    (currentLocation) => currentLocation.scheduledDepartures.length > 0
+  );
+
+  if (locationsWithDepartures.length === 0) {
+    return null;
+  }
+
   return (
-    <section className="panel">
+    <>
+      <div className="panel-divider" />
       <h2 className="title card-subtitle">Scheduled Departures</h2>
-      {service.locations
-        .filter((currentLocation) => currentLocation.scheduledDepartures.length > 0)
+      {locationsWithDepartures
         .sort((a, b) => {
           const aFirst = a.scheduledDepartures[0]?.departure ?? "";
           const bFirst = b.scheduledDepartures[0]?.departure ?? "";
@@ -42,8 +50,8 @@ export function ScheduledDeparturesPanel({ service }: { service: Service }): Rea
                         className={`departure-row ${hasDeparted ? "departure-dim" : ""}`}
                         key={`${departure.departure}-${departure.arrival}`}
                       >
-                        <span>Depart {formatTime(departure.departure)}</span>
-                        <span>Arrive {formatTime(departure.arrival)}</span>
+                        <span>{formatTime(departure.departure)}</span>
+                        <span>{formatTime(departure.arrival)}</span>
                       </div>
                     );
                   })}
@@ -51,6 +59,6 @@ export function ScheduledDeparturesPanel({ service }: { service: Service }): Rea
             );
           });
         })}
-    </section>
+    </>
   );
 }

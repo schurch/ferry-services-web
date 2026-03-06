@@ -1,11 +1,17 @@
 import type React from "react";
 import type { ServiceOperator } from "../../types";
+import calmacLogo from "../../assets/calmac-logo.png";
 
 export function OperatorContactActions({ operator }: { operator: ServiceOperator }): React.JSX.Element {
+  const showCalmacLogo = operator.name.trim().toLowerCase() === "calmac";
+
   return (
     <>
       <div className="panel-divider" />
-      <h2 className="title card-subtitle">{operator.name}</h2>
+      <h2 className="title card-subtitle operator-heading">
+        {showCalmacLogo && <img className="operator-logo" src={calmacLogo} alt="" aria-hidden="true" />}
+        <span>{operator.name}</span>
+      </h2>
       <div className="inline-buttons">
         {operator.localNumber && (
           <a className="button" href={`tel:${operator.localNumber.split(" ").join("-")}`}>

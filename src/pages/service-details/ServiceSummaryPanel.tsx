@@ -5,6 +5,7 @@ import type { Service } from "../../types";
 import { formatDateTime } from "../../utils/date";
 import { disruptionText, statusLabel } from "../../utils/status";
 import { OperatorContactActions } from "./OperatorContactActions";
+import { ScheduledDeparturesPanel } from "./ScheduledDeparturesPanel";
 import { ServiceLocations } from "./ServiceLocations";
 
 export function ServiceSummaryPanel({
@@ -51,6 +52,7 @@ export function ServiceSummaryPanel({
       </div>
 
       <ServiceLocations service={service} />
+      <ScheduledDeparturesPanel service={service} />
       {service.operator && <OperatorContactActions operator={service.operator} />}
     </section>
   );

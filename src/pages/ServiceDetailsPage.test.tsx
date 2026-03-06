@@ -1,7 +1,7 @@
 import type React from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { ServiceDetailsPage } from "./ServiceDetailsPage";
 import type { Service } from "../types";
 
@@ -120,6 +120,11 @@ describe("ServiceDetailsPage", () => {
   beforeEach(() => {
     mockFetchService.mockReset();
     mockFetchService.mockResolvedValue(baseService);
+    vi.spyOn(window, "scrollTo").mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    vi.restoreAllMocks();
   });
 
   it("loads and renders service details from API", async () => {
@@ -131,7 +136,14 @@ describe("ServiceDetailsPage", () => {
 
     expect(screen.getByText("Port A to Port B", { selector: "div.muted" })).toBeInTheDocument();
     expect(screen.getByText("Scheduled Departures")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Locations" })).toBeInTheDocument();
+    expect(screen.getByText("12:00 PM")).toBeInTheDocument();
+    expect(screen.getByText("1:00 PM")).toBeInTheDocument();
+    expect(screen.queryByText(/Depart /)).not.toBeInTheDocument();
+    expect(screen.queryByText(/Arrive /)).not.toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "CalMac" })).toBeInTheDocument();
     expect(screen.getByTestId("google-map")).toHaveTextContent("Map for Hebrides");
+    expect(window.scrollTo).toHaveBeenCalledWith({ top: 0, left: 0, behavior: "auto" });
 
     await waitFor(() => {
       expect(mockFetchService).toHaveBeenCalledWith(7, expect.stringMatching(/^\d{4}-\d{2}-\d{2}$/));

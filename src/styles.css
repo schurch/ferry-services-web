@@ -190,6 +190,10 @@ button {
   padding: 12px 14px 12px 38px;
   border: none;
   border-radius: var(--radius);
+  color: var(--text);
+  caret-color: var(--text);
+  -webkit-text-fill-color: var(--text);
+  color-scheme: light dark;
   background: var(--search-bg);
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%2360778f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="16.65" y1="16.65" x2="21" y2="21"/></svg>');
   background-repeat: no-repeat;
@@ -197,6 +201,11 @@ button {
   background-size: 16px 16px;
   box-shadow: 0 4px 16px rgba(16, 36, 62, 0.06);
   margin-bottom: 14px;
+}
+
+.search::placeholder {
+  color: var(--muted);
+  opacity: 1;
 }
 
 .search:focus {
@@ -413,6 +422,18 @@ button {
 .card-subtitle {
   font-size: 1.1rem;
   margin: 18px 0 10px;
+}
+
+.operator-heading {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.operator-logo {
+  width: auto;
+  height: 28px;
+  display: block;
 }
 
 .panel-divider {
