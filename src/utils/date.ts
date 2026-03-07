@@ -9,6 +9,10 @@ export function toDateInput(date: Date): string {
   return toApiDate(date);
 }
 
+export function isDateInput(value: string | null): value is string {
+  return Boolean(value && /^\d{4}-\d{2}-\d{2}$/.test(value));
+}
+
 export function formatDateTime(value: string | null): string {
   if (!value) return "Unknown";
   const date = new Date(value);

@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { formatDateTime, formatRelativeTime, formatTime, toApiDate, toDateInput } from "./date";
+import { formatDateTime, formatRelativeTime, formatTime, isDateInput, toApiDate, toDateInput } from "./date";
 
 describe("date utils", () => {
   beforeEach(() => {
@@ -17,6 +17,12 @@ describe("date utils", () => {
 
   it("toDateInput delegates to API date format", () => {
     expect(toDateInput(new Date(2026, 11, 31, 12, 0, 0))).toBe("2026-12-31");
+  });
+
+  it("detects valid date input strings", () => {
+    expect(isDateInput("2026-03-06")).toBe(true);
+    expect(isDateInput("2026-3-6")).toBe(false);
+    expect(isDateInput(null)).toBe(false);
   });
 
   it("returns safe fallbacks for invalid or empty values", () => {

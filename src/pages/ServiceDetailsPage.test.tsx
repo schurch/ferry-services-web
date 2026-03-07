@@ -128,7 +128,7 @@ describe("ServiceDetailsPage", () => {
   });
 
   it("loads and renders service details from API", async () => {
-    renderPage({ path: "/service/7" });
+    renderPage({ path: "/service/7?departuresDate=2026-03-06" });
 
     expect(screen.getByText("Loading service details...")).toBeInTheDocument();
 
@@ -142,11 +142,26 @@ describe("ServiceDetailsPage", () => {
     expect(screen.queryByText(/Depart /)).not.toBeInTheDocument();
     expect(screen.queryByText(/Arrive /)).not.toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "CalMac" })).toBeInTheDocument();
+    expect(screen.getByLabelText("Scheduled departures date")).toHaveValue("2026-03-06");
     expect(screen.getByTestId("google-map")).toHaveTextContent("Map for Hebrides");
     expect(window.scrollTo).toHaveBeenCalledWith({ top: 0, left: 0, behavior: "auto" });
 
     await waitFor(() => {
-      expect(mockFetchService).toHaveBeenCalledWith(7, expect.stringMatching(/^\d{4}-\d{2}-\d{2}$/));
+      expect(mockFetchService).toHaveBeenCalledWith(7, "2026-03-06");
+    });
+  });
+
+  it("updates departures date from the picker", async () => {
+    renderPage({ path: "/service/7?departuresDate=2026-03-06" });
+
+    await screen.findByText("Hebrides");
+
+    fireEvent.change(screen.getByLabelText("Scheduled departures date"), {
+      target: { value: "2026-03-07" }
+    });
+
+    await waitFor(() => {
+      expect(mockFetchService).toHaveBeenLastCalledWith(7, "2026-03-07");
     });
   });
 

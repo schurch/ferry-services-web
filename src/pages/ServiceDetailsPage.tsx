@@ -1,23 +1,26 @@
 import type React from "react";
 import { useCallback, useEffect, useState } from "react";
-import { Navigate, useLocation, useParams } from "react-router-dom";
+import { Navigate, useLocation, useParams, useSearchParams } from "react-router-dom";
 import { fetchService } from "../api/services";
 import { AppPromo } from "../components/AppPromo";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeading } from "../components/SiteHeading";
 import type { Service } from "../types";
-import { toDateInput } from "../utils/date";
+import { isDateInput, toDateInput } from "../utils/date";
 import { DisruptionDetailsModal } from "./service-details/DisruptionDetailsModal";
 import { ServiceSummaryPanel } from "./service-details/ServiceSummaryPanel";
 
 export function ServiceDetailsPage(): React.JSX.Element {
   const params = useParams();
   const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
   const serviceId = Number(params.id);
   const initialService = (location.state as { service?: Service } | null)?.service;
+  const defaultDateValue = toDateInput(new Date());
+  const searchDateValue = searchParams.get("departuresDate");
+  const dateValue = isDateInput(searchDateValue) ? searchDateValue : defaultDateValue;
 
   const [service, setService] = useState<Service | null>(initialService ?? null);
-  const [dateValue] = useState(() => toDateInput(new Date()));
   const [loading, setLoading] = useState(!initialService);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [showDisruptionModal, setShowDisruptionModal] = useState(false);
@@ -42,12 +45,39 @@ export function ServiceDetailsPage(): React.JSX.Element {
   }, [dateValue, serviceId]);
 
   useEffect(() => {
+    const nextService = initialService?.serviceId === serviceId ? initialService : null;
+    setService(nextService);
+    setLoading(!nextService);
+    setErrorMessage(null);
+  }, [serviceId]);
+
+  useEffect(() => {
     void loadDetails();
-  }, [loadDetails]);
+  }, [serviceId]);
+
+  useEffect(() => {
+    if (searchDateValue === dateValue) {
+      return;
+    }
+
+    const nextParams = new URLSearchParams(searchParams);
+    nextParams.set("departuresDate", dateValue);
+    setSearchParams(nextParams, { replace: true });
+  }, [dateValue, searchDateValue, searchParams, setSearchParams]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-  }, [serviceId, location.key]);
+  }, [serviceId]);
+
+  const handleDeparturesDateChange = (nextDate: string) => {
+    const nextParams = new URLSearchParams(searchParams);
+    nextParams.set("departuresDate", nextDate);
+    setSearchParams(nextParams);
+  };
+
+  const handleOpenDisruptionDetails = useCallback(() => {
+    setShowDisruptionModal(true);
+  }, []);
 
   if (Number.isNaN(serviceId)) {
     return <Navigate to="/" replace />;
@@ -79,9 +109,13 @@ export function ServiceDetailsPage(): React.JSX.Element {
           {service && (
             <>
               <ServiceSummaryPanel
+                departuresDate={dateValue}
+                departuresInitialLocations={service.locations}
+                departuresInitialScheduledDeparturesAvailable={service.scheduledDeparturesAvailable}
                 service={service}
                 hasAdditionalInfo={hasAdditionalInfo}
-                onOpenDisruptionDetails={() => setShowDisruptionModal(true)}
+                onDeparturesDateChange={handleDeparturesDateChange}
+                onOpenDisruptionDetails={handleOpenDisruptionDetails}
               />
             </>
           )}

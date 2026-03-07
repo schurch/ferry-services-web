@@ -1,20 +1,28 @@
-import type React from "react";
+import React from "react";
 import { GoogleServiceMap } from "../../components/GoogleServiceMap";
 import { getGoogleMapPoints } from "../../maps/points";
-import type { Service } from "../../types";
+import type { Location, Service } from "../../types";
 import { formatDateTime } from "../../utils/date";
 import { disruptionText, statusLabel } from "../../utils/status";
 import { OperatorContactActions } from "./OperatorContactActions";
 import { ScheduledDeparturesPanel } from "./ScheduledDeparturesPanel";
 import { ServiceLocations } from "./ServiceLocations";
 
-export function ServiceSummaryPanel({
+function ServiceSummaryPanelInner({
+  departuresDate,
+  departuresInitialLocations,
+  departuresInitialScheduledDeparturesAvailable,
   service,
   hasAdditionalInfo,
+  onDeparturesDateChange,
   onOpenDisruptionDetails
 }: {
+  departuresDate: string;
+  departuresInitialLocations: Location[];
+  departuresInitialScheduledDeparturesAvailable: boolean;
   service: Service;
   hasAdditionalInfo: boolean;
+  onDeparturesDateChange: (nextDate: string) => void;
   onOpenDisruptionDetails: () => void;
 }): React.JSX.Element {
   const mapPoints = getGoogleMapPoints(service);
@@ -52,8 +60,16 @@ export function ServiceSummaryPanel({
       </div>
 
       <ServiceLocations service={service} />
-      <ScheduledDeparturesPanel service={service} />
+      <ScheduledDeparturesPanel
+        departuresDate={departuresDate}
+        initialLocations={departuresInitialLocations}
+        initialScheduledDeparturesAvailable={departuresInitialScheduledDeparturesAvailable}
+        onDeparturesDateChange={onDeparturesDateChange}
+        serviceId={service.serviceId}
+      />
       {service.operator && <OperatorContactActions operator={service.operator} />}
     </section>
   );
 }
+
+export const ServiceSummaryPanel = React.memo(ServiceSummaryPanelInner);
