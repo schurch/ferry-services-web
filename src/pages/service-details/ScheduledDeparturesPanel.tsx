@@ -100,11 +100,7 @@ export function ScheduledDeparturesPanel({
       </div>
       {errorMessage && <p className="small muted section-status">{errorMessage}</p>}
       {locationsWithDepartures
-        .sort((a, b) => {
-          const aFirst = a.scheduledDepartures[0]?.departure ?? "";
-          const bFirst = b.scheduledDepartures[0]?.departure ?? "";
-          return aFirst.localeCompare(bFirst);
-        })
+        .sort((a, b) => a.name.localeCompare(b.name))
         .map((currentLocation) => {
           const groupedByDestination = new Map<number, ScheduledDeparture[]>();
           for (const departure of currentLocation.scheduledDepartures) {
