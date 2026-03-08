@@ -1,13 +1,15 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
+const apiProxyTarget = "https://scottishferryapp.com";
+
 export default defineConfig({
   base: "./",
   plugins: [react()],
   server: {
     proxy: {
       "/api": {
-        target: "https://scottishferryapp.com",
+        target: apiProxyTarget,
         changeOrigin: true,
         secure: true
       }
@@ -16,7 +18,7 @@ export default defineConfig({
   preview: {
     proxy: {
       "/api": {
-        target: "https://scottishferryapp.com",
+        target: apiProxyTarget,
         changeOrigin: true,
         secure: true
       }

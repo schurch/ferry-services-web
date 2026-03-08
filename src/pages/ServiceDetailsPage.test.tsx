@@ -130,8 +130,6 @@ describe("ServiceDetailsPage", () => {
   it("loads and renders service details from API", async () => {
     renderPage({ path: "/service/7?departuresDate=2026-03-06" });
 
-    expect(screen.getByText("Loading service details...")).toBeInTheDocument();
-
     await screen.findByText("Hebrides");
 
     expect(screen.getByText("Port A to Port B", { selector: "div.muted" })).toBeInTheDocument();
@@ -185,7 +183,6 @@ describe("ServiceDetailsPage", () => {
     renderPage({ path: "/service/not-a-number" });
 
     await screen.findByText("Home page");
-    expect(screen.queryByText("Loading service details...")).not.toBeInTheDocument();
     expect(mockFetchService).not.toHaveBeenCalled();
   });
 });

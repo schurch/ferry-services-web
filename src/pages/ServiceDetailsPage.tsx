@@ -1,5 +1,5 @@
 import type React from "react";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Navigate, useLocation, useParams, useSearchParams } from "react-router-dom";
 import { fetchService } from "../api/services";
 import { AppPromo } from "../components/AppPromo";
@@ -15,13 +15,19 @@ export function ServiceDetailsPage(): React.JSX.Element {
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const serviceId = Number(params.id);
-  const initialService = (location.state as { service?: Service } | null)?.service;
+  const routedService = (location.state as { service?: Service } | null)?.service;
   const defaultDateValue = toDateInput(new Date());
   const searchDateValue = searchParams.get("departuresDate");
   const dateValue = isDateInput(searchDateValue) ? searchDateValue : defaultDateValue;
+  const initialService = useMemo(() => {
+    if (routedService?.serviceId === serviceId) {
+      return routedService;
+    }
+
+    return null;
+  }, [routedService, serviceId]);
 
   const [service, setService] = useState<Service | null>(initialService ?? null);
-  const [loading, setLoading] = useState(!initialService);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [showDisruptionModal, setShowDisruptionModal] = useState(false);
 
@@ -31,7 +37,6 @@ export function ServiceDetailsPage(): React.JSX.Element {
       return;
     }
 
-    setLoading(true);
     setErrorMessage(null);
 
     try {
@@ -39,17 +44,10 @@ export function ServiceDetailsPage(): React.JSX.Element {
       setService(latest);
     } catch {
       setErrorMessage("Could not load latest service details.");
-    } finally {
-      setLoading(false);
     }
   }, [dateValue, serviceId]);
 
-  useEffect(() => {
-    const nextService = initialService?.serviceId === serviceId ? initialService : null;
-    setService(nextService);
-    setLoading(!nextService);
-    setErrorMessage(null);
-  }, [serviceId]);
+  const displayedService = initialService ?? service;
 
   useEffect(() => {
     void loadDetails();
@@ -83,7 +81,7 @@ export function ServiceDetailsPage(): React.JSX.Element {
     return <Navigate to="/" replace />;
   }
 
-  const hasAdditionalInfo = Boolean(service?.additionalInfo && service.additionalInfo.trim().length > 0);
+  const hasAdditionalInfo = Boolean(displayedService?.additionalInfo && displayedService.additionalInfo.trim().length > 0);
 
   useEffect(() => {
     if (!showDisruptionModal) return;
@@ -103,16 +101,15 @@ export function ServiceDetailsPage(): React.JSX.Element {
       <SiteHeading />
       <div className="content-with-promo">
         <div className="primary-content">
-          {loading && <p className="muted">Loading service details...</p>}
-          {!loading && errorMessage && <p className="muted">{errorMessage}</p>}
+          {errorMessage && !displayedService && <p className="muted">{errorMessage}</p>}
 
-          {service && (
+          {displayedService && (
             <>
               <ServiceSummaryPanel
                 departuresDate={dateValue}
-                departuresInitialLocations={service.locations}
-                departuresInitialScheduledDeparturesAvailable={service.scheduledDeparturesAvailable}
-                service={service}
+                departuresInitialLocations={displayedService.locations}
+                departuresInitialScheduledDeparturesAvailable={displayedService.scheduledDeparturesAvailable}
+                service={displayedService}
                 hasAdditionalInfo={hasAdditionalInfo}
                 onDeparturesDateChange={handleDeparturesDateChange}
                 onOpenDisruptionDetails={handleOpenDisruptionDetails}
@@ -124,10 +121,10 @@ export function ServiceDetailsPage(): React.JSX.Element {
           <AppPromo />
         </aside>
       </div>
-      {service && hasAdditionalInfo && showDisruptionModal && (
+      {displayedService && hasAdditionalInfo && showDisruptionModal && (
         <DisruptionDetailsModal
-          area={service.area}
-          additionalInfo={service.additionalInfo ?? ""}
+          area={displayedService.area}
+          additionalInfo={displayedService.additionalInfo ?? ""}
           onClose={() => setShowDisruptionModal(false)}
         />
       )}

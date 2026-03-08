@@ -16,13 +16,22 @@ function hasCalmacBrand(name: string): boolean {
 }
 
 export function ServicesPage(): React.JSX.Element {
-  const [services, setServices] = useState<Service[]>([]);
+  const [services, setServices] = useState<Service[]>(() => {
+    const cached = localStorage.getItem(SERVICES_CACHE);
+    if (!cached) {
+      return [];
+    }
+
+    try {
+      return JSON.parse(cached) as Service[];
+    } catch {
+      return [];
+    }
+  });
   const [searchText, setSearchText] = useState("");
-  const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const loadServices = useCallback(async () => {
-    setLoading(true);
     setErrorMessage(null);
     try {
       const latest = await fetchServices();
@@ -40,8 +49,6 @@ export function ServicesPage(): React.JSX.Element {
       } else {
         setErrorMessage("Could not load services.");
       }
-    } finally {
-      setLoading(false);
     }
   }, []);
 
@@ -91,10 +98,9 @@ export function ServicesPage(): React.JSX.Element {
             </div>
           </div>
 
-          {loading && <p className="muted">Loading services...</p>}
-          {!loading && errorMessage && <p className="muted">{errorMessage}</p>}
+          {errorMessage && <p className="muted">{errorMessage}</p>}
 
-          {!loading && grouped.length === 0 && <p className="muted">No services found.</p>}
+          {grouped.length === 0 && <p className="muted">No services found.</p>}
 
           {grouped.map(([groupName, groupServices]) => (
             <section className="group" key={groupName}>
