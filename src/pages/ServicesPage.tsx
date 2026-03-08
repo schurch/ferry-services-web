@@ -2,6 +2,7 @@ import type React from "react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchServices } from "../api/services";
+import { BOOTSTRAP_SERVICES } from "../data/bootstrap-services";
 import { SERVICES_CACHE } from "../constants";
 import { AppPromo } from "../components/AppPromo";
 import { SiteFooter } from "../components/SiteFooter";
@@ -16,18 +17,7 @@ function hasCalmacBrand(name: string): boolean {
 }
 
 export function ServicesPage(): React.JSX.Element {
-  const [services, setServices] = useState<Service[]>(() => {
-    const cached = localStorage.getItem(SERVICES_CACHE);
-    if (!cached) {
-      return [];
-    }
-
-    try {
-      return JSON.parse(cached) as Service[];
-    } catch {
-      return [];
-    }
-  });
+  const [services, setServices] = useState<Service[]>(BOOTSTRAP_SERVICES);
   const [searchText, setSearchText] = useState("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
