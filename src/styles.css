@@ -394,15 +394,17 @@ button {
 }
 
 .location {
-  border: none;
-  border-radius: 12px;
-  padding: 12px;
-  background: var(--surface);
+  padding: 0;
+  background: transparent;
 }
 
 .location h3 {
   margin: 0 0 8px 0;
   font-size: 1rem;
+}
+
+.grid .location:first-child {
+  padding-top: 10px;
 }
 
 .departures-route {
