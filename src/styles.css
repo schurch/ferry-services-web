@@ -727,8 +727,69 @@ button {
   line-height: 1.45;
 }
 
+.site-footer .footer-links {
+  margin-top: 8px;
+}
+
 .site-footer a {
   color: var(--link);
+}
+
+.policy {
+  line-height: 1.62;
+}
+
+.policy-header {
+  margin-bottom: 24px;
+}
+
+.policy-header h1 {
+  margin: 0 0 10px;
+  font-size: clamp(1.9rem, 4vw, 2.8rem);
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+.policy-header p {
+  max-width: 720px;
+}
+
+.policy-kicker {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.policy section {
+  padding-top: 18px;
+  border-top: 1px solid var(--divider);
+}
+
+.policy section:first-of-type {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.policy h2 {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+  letter-spacing: -0.015em;
+}
+
+.policy p {
+  margin: 0 0 14px;
+}
+
+.policy ul {
+  margin: 0 0 14px;
+  padding-left: 22px;
+}
+
+.policy li + li {
+  margin-top: 5px;
 }
 
 .link-button {
